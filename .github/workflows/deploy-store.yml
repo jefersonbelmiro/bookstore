@@ -35,7 +35,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./store/dist/store
+          publish_dir: ./store/dist/store/browser
           destination_dir: store
           keep_files: true
 
