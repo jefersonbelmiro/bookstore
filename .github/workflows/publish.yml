@@ -40,7 +40,7 @@ jobs:
 
       - name: Publish to NPM
         run: |
-          cd shared-lib
-          npm publish dist/shared-lib --access public
+          cd shared-lib/dist/shared-lib
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
