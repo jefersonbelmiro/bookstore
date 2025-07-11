@@ -49,9 +49,7 @@ export class BookListComponent {
 
 
   async openReview(book: any) {
-
     try {
-
       const module = await loadRemoteModule({
         type: 'module',
         remoteEntry: environment.remotes.review,
@@ -60,14 +58,8 @@ export class BookListComponent {
       this.dialog.open(module.BookReviewDialogComponent, {
         data: book
       });
-
-      console.log('module', { module });
     } catch (err) {
       console.log('load error', { err });
     }
-
-    //this.dialog.open(BookReviewDialogComponent, {
-    //  data: book
-    //});
   }
 }
