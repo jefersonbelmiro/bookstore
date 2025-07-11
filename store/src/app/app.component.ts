@@ -1,3 +1,4 @@
+import { loadRemoteModule } from '@angular-architects/module-federation';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
@@ -9,4 +10,23 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'store';
+
+  ngOnInit() {
+    this.loadButton1();
+  }
+
+  async loadButton1() {
+    try {
+
+      const module = await loadRemoteModule({
+        type: 'module',
+        remoteEntry: 'http://localhost:4201/remoteEntry.js',
+        exposedModule: './AccountForm'
+      });
+
+      console.log('module', { module });
+    } catch (err) {
+      console.log('load error', { err });
+    }
+  }
 }
