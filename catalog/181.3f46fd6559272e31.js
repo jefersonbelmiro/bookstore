@@ -1,0 +1,1 @@
+(self.webpackChunkcatalog=self.webpackChunkcatalog||[]).push([[181],{2181:(h,n,o)=>{o.r(n),o.d(n,{routes:()=>t});const t=[{path:"",loadComponent:()=>o.e(377).then(o.bind(o,8377)).then(s=>s.BookListComponent)}]}}]);
