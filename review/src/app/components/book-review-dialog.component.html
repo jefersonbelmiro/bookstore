@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Review de {{ data.title }}</h2>
+<mat-dialog-content>
+  <p><strong>Usuário:</strong> {{ profile.name() }}</p>
+  <p><strong>Email:</strong> {{ profile.email() }}</p>
+  <p><em>"{{ data.review.comment }}"</em></p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Fechar</button>
+</mat-dialog-actions>

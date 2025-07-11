@@ -5,7 +5,7 @@ module.exports = withModuleFederationPlugin({
   name: 'review',
 
   exposes: {
-    './Component': './src/app/app.component.ts',
+    './BookReviewDialogComponent': './src/app/components/book-review-dialog.component.ts',
   },
 
   shared: {

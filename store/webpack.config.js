@@ -14,6 +14,12 @@ module.exports = withModuleFederationPlugin({
 
   shared: {
     ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+
+    //'@angular/material/form-field': { singleton: true, strictVersion: false, requiredVersion: '^19.0.0' },
+    //'@angular/material/input': { singleton: true, strictVersion: false, requiredVersion: '^19.0.0' },
+    //'@angular/material/button': { singleton: true, strictVersion: false, requiredVersion: '^19.0.0' },
+    //'@angular/forms': { singleton: true, strictVersion: false, requiredVersion: '^19.0.0' },
+
   },
 
 });
