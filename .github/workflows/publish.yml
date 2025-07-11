@@ -23,11 +23,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           scope: '@bookstore-app'
 
-      - name: Config npmrc
-        run: |
-          cd shared-lib
-          echo '//registry.npmjs.org/:_authToken=${secrets.NPM_TOKEN}' > .npmrc
-
       - name: Install dependencies
         run: |
           cd shared-lib
@@ -37,6 +32,12 @@ jobs:
         run: |
           cd shared-lib
           npm run build:prod
+
+      - name: Config npmrc
+        run: |
+          cd shared-lib/dist/shared-lib
+          echo '//registry.npmjs.org/:_authToken=${secrets.NPM_TOKEN}' > .npmrc
+          echo .npmrc
 
       - name: Publish to NPM
         run: |
