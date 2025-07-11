@@ -1,12 +1,13 @@
 import { loadRemoteModule } from '@angular-architects/module-federation';
 import { Routes } from '@angular/router';
+import { environment } from '../environments/environment';
 
 export const routes: Routes = [
   {
     path: 'account',
     loadChildren: () => loadRemoteModule({
       type: 'module',
-      remoteEntry: 'http://localhost:4201/remoteEntry.js',
+      remoteEntry: environment.remotes.account,
       exposedModule: './routes'
 
     }).then(m => m.routes)
@@ -15,7 +16,7 @@ export const routes: Routes = [
     path: 'catalog',
     loadChildren: () => loadRemoteModule({
       type: 'module',
-      remoteEntry: 'http://localhost:4202/remoteEntry.js',
+      remoteEntry: environment.remotes.catalog,
       exposedModule: './routes'
 
     }).then(m => m.routes)

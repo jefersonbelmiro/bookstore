@@ -3,6 +3,7 @@ import { Component, inject, Signal, WritableSignal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-account-form',
@@ -23,7 +24,7 @@ export class AccountFormComponent {
     try {
       const module = await loadRemoteModule({
         type: 'module',
-        remoteEntry: 'http://localhost:4201/remoteEntry.js',
+        remoteEntry: environment.remotes.account,
         exposedModule: './ProfileState'
       });
 
@@ -36,7 +37,6 @@ export class AccountFormComponent {
 
       this.form.controls.name.valueChanges.subscribe(name => {
         if (name) profile.name.set(name);
-        console.log('name change', name, profile!.name());
       })
       this.form.controls.email.valueChanges.subscribe(email => {
         if (email) profile.email.set(email);

@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { loadRemoteModule } from '@angular-architects/module-federation';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-book-list',
@@ -53,7 +54,7 @@ export class BookListComponent {
 
       const module = await loadRemoteModule({
         type: 'module',
-        remoteEntry: 'http://localhost:4203/remoteEntry.js',
+        remoteEntry: environment.remotes.review,
         exposedModule: './BookReviewDialogComponent'
       });
       this.dialog.open(module.BookReviewDialogComponent, {

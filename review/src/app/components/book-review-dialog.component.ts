@@ -2,6 +2,7 @@ import { Component, inject, Signal } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { loadRemoteModule } from '@angular-architects/module-federation';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-book-review-dialog',
@@ -22,7 +23,7 @@ export class BookReviewDialogComponent {
     try {
       const module = await loadRemoteModule({
         type: 'module',
-        remoteEntry: 'http://localhost:4201/remoteEntry.js',
+        remoteEntry: environment.remotes.account,
         exposedModule: './ProfileState'
       });
       this.profile = module.ProfileState;
