@@ -27,7 +27,6 @@ jobs:
         run: |
           cd shared-lib
           npm ci
-
       - name: Build library
         run: |
           cd shared-lib
@@ -36,8 +35,9 @@ jobs:
       - name: Config npmrc
         run: |
           cd shared-lib/dist/shared-lib
+          npm config set _authToken=${{ secrets.NPM_TOKEN }}
           echo '//registry.npmjs.org/:_authToken=${secrets.NPM_TOKEN}' > .npmrc
-          echo .npmrc
+          cat .npmrc
 
       - name: Publish to NPM
         run: |
