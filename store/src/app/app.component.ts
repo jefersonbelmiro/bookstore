@@ -1,10 +1,9 @@
-import { loadRemoteModule } from '@angular-architects/module-federation';
-import { Component, Signal, } from '@angular/core';
+import { Component, inject, } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { environment } from '../environments/environment'
+import { ProfileStateService } from '@bookstore-app/shared-lib';
 
 @Component({
   selector: 'app-root',
@@ -13,23 +12,11 @@ import { environment } from '../environments/environment'
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  profileName?: Signal<string>;
+  profile = inject(ProfileStateService);
 
-  ngOnInit() {
-    this.loadProfile();
-  }
-
-  async loadProfile() {
-    try {
-      const module = await loadRemoteModule({
-        type: 'module',
-        remoteEntry: environment.remotes.account,
-        exposedModule: './ProfileState'
-      });
-      this.profileName = module.ProfileState.name;
-    } catch (err) {
-      console.log('load error', { err });
-    }
+  constructor() {
+    this.profile.name.set("Jeferson Belmiro")
+    this.profile.email.set("jeferson.belmiro@gmail.com");
   }
 
 }
