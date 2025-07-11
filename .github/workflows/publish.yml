@@ -1,0 +1,35 @@
+name: Publish Shared Lib
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'shared-lib/projects/shared-lib/**'
+      - '.github/workflows/publish.yml'
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@bookstore-app'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build library
+        run: npx ng build shared-lib
+
+      - name: Publish to NPM
+        run: npm publish dist/shared-lib --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
