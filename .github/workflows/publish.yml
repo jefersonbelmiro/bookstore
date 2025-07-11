@@ -24,12 +24,18 @@ jobs:
           scope: '@bookstore-app'
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          cd shared-lib
+          npm ci
 
       - name: Build library
-        run: npx ng build shared-lib
+        run: |
+          cd shared-lib
+          npm run build:prod
 
       - name: Publish to NPM
-        run: npm publish dist/shared-lib --access public
+        run: |
+          cd shared-lib
+          run: npm publish dist/shared-lib --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
