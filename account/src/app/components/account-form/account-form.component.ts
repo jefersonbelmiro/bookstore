@@ -1,8 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { loadRemoteModule } from '@angular-architects/module-federation';
+import { Component, inject, Signal, WritableSignal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ProfileService } from '@profile/service'
 
 @Component({
   selector: 'app-account-form',
@@ -12,27 +12,38 @@ import { ProfileService } from '@profile/service'
 })
 export class AccountFormComponent {
 
-  profile = inject(ProfileService);
+  profile!: { name: WritableSignal<string>, email: WritableSignal<string> };
 
   form = new FormGroup({
     name: new FormControl(''),
     email: new FormControl(''),
   })
 
-  constructor() {
-    console.log('profile', this.profile);
-    this.form.patchValue({
-      name: this.profile.name(),
-      email: this.profile.email(),
-    });
+  async ngOnInit() {
+    try {
+      const module = await loadRemoteModule({
+        type: 'module',
+        remoteEntry: 'http://localhost:4201/remoteEntry.js',
+        exposedModule: './ProfileState'
+      });
 
-    this.form.controls.name.valueChanges.subscribe(name => {
-      if (name) this.profile.name.set(name);
-      console.log('name change', name, this.profile.name());
-    })
-    this.form.controls.email.valueChanges.subscribe(email => {
-      if (email) this.profile.email.set(email);
-    })
+      const profile: { name: WritableSignal<string>, email: WritableSignal<string> } = module.ProfileState;
+
+      this.form.patchValue({
+        name: profile.name(),
+        email: profile.email(),
+      });
+
+      this.form.controls.name.valueChanges.subscribe(name => {
+        if (name) profile.name.set(name);
+        console.log('name change', name, profile!.name());
+      })
+      this.form.controls.email.valueChanges.subscribe(email => {
+        if (email) profile.email.set(email);
+      })
+    } catch (err) {
+      console.log('load error', { err });
+    }
   }
 
 }

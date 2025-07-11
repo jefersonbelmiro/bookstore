@@ -7,6 +7,7 @@ module.exports = withModuleFederationPlugin({
   exposes: {
     './AccountForm': './src/app/components/account-form/account-form.component.ts',
     './routes': './src/app/app.routes.ts',
+    "./ProfileState": './src/app/profile-state.ts',
   },
 
   shared: {

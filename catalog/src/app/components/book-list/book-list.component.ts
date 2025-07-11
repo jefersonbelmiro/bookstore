@@ -20,8 +20,6 @@ export class BookListComponent {
       title: 'You Don\'t Know JS',
       author: 'Kyle Simpson',
       review: {
-        user: 'Erica Js',
-        email: 'erica@js.fun',
         comment: 'Agora eu sei JS, mas continuo não entendendo o "this".'
       }
     },
@@ -29,8 +27,6 @@ export class BookListComponent {
       title: 'Working Effectively with Legacy Code',
       author: 'Michael Feathers',
       review: {
-        user: 'Hugo Legacy',
-        email: 'hugo@legacy.io',
         comment: 'Descobri que o maior legado é o trauma.'
       }
     },
@@ -38,8 +34,6 @@ export class BookListComponent {
       title: 'Design Patterns: Elements of Reusable OO Software',
       author: 'Gamma, Helm, Johnson, Vlissides',
       review: {
-        user: 'Cecilia Patterns',
-        email: 'cecilia@patterns.dev',
         comment: 'Depois desse livro até meus bugs ficaram organizados!'
       }
     },
@@ -47,8 +41,6 @@ export class BookListComponent {
       title: 'The Philosophy of Software Design',
       author: 'John Ousterhout',
       review: {
-        user: 'Paula Simplicity',
-        email: 'paula@design.com',
         comment: 'Depois de ler, troquei todos meus métodos "doStuff" para "doTheRightStuff".',
       }
     }
