@@ -49,7 +49,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./account/dist/account/browser
+          publish_dir: ./account/dist/account
           destination_dir: account
           keep_files: true
 
